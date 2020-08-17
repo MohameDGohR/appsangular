@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -117,8 +118,16 @@
               "devServerTarget": "FinalProject:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "FinalProject"
+    }
+  },
+  "defaultProject": "FinalProject",
+  "cli": {
+    "analytics": "6b54a383-07ad-4d57-91a4-0e47b03db51d"
+  }
 }

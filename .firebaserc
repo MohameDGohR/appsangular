@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "myangularpro-f752c": {
+      "hosting": {
+        "FinalProject": [
+          "myangularpro-f752c"
+        ]
+      }
+    }
+  }
+}
