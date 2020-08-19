@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../services/auth.service';
+import { UserService } from './../services/user.service';
+import { userinfo } from './../services/userinfo';
+import { map } from 'rxjs/operators';
+import { observable, Observable } from 'rxjs';
+import { app } from 'firebase';
+
 
 
 
@@ -11,8 +17,12 @@ import { AuthService } from './../services/auth.service';
 })
 export class NavBarComponent implements OnInit {
 
+  appuser: userinfo    ;
 
   constructor(private auth: AuthService ) {
+
+    this.auth.Appuser$.subscribe(appuser => this.appuser = appuser);
+    console.log( this.appuser);
    }
 
 

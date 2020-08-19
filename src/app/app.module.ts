@@ -16,6 +16,14 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { UserService } from './services/user.service';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoriesService } from './services/categories.service';
+import {FormsModule} from '@angular/forms' ;
+import { CustomFormsModule } from 'ngx-custom-validators';
+
 
 @NgModule({
   declarations: [
@@ -27,16 +35,19 @@ import { AuthService } from './services/auth.service';
     AdminOrdersComponent,
     ShoppingCartComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProductFormComponent
   ],
   imports: [
   BrowserModule,
     AppRoutingModule,
     NgbModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firbase)
+    AngularFireModule.initializeApp(environment.firbase),
+    FormsModule,
+    CustomFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService, UserService, AdminAuthGuardService , CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

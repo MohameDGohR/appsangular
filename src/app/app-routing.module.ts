@@ -7,13 +7,24 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 
 const routes: Routes = [
-  {path: 'products', component: ProductsComponent },
-  {path: 'orders', component: MyOrdersComponent },
-  {path: 'admin/orders', component: AdminOrdersComponent },
-  {path: 'admin/products', component: AdminProductsComponent },
+  {path: 'products', component: ProductsComponent,
+   canActivate: [ AuthGuardService] },
+  {path: 'orders', component: MyOrdersComponent ,
+   canActivate: [ AuthGuardService ] },
+  {path: 'admin/orders', component: AdminOrdersComponent  ,
+   canActivate: [ AuthGuardService, AdminAuthGuardService] },
+  {path: 'admin/products', component: AdminProductsComponent ,
+   canActivate: [ AuthGuardService , AdminAuthGuardService]  },
+   {path: 'admin/products/new/:id', component: ProductFormComponent ,
+   canActivate: [ AuthGuardService , AdminAuthGuardService]  },
+   {path: 'admin/products/new', component: ProductFormComponent ,
+   canActivate: [ AuthGuardService , AdminAuthGuardService]  },
   {path: 'shopping-cart', component: ShoppingCartComponent  },
   {path: 'login', component: LoginComponent  },
   {path: 'logout', component: LogoutComponent  }
@@ -27,6 +38,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule { }
